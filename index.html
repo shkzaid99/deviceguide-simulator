@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Device Guide Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary navigation">
+      <button class="brand-mark" data-route="home" aria-label="Go to home page">
+        <span class="brand-icon" aria-hidden="true">DG</span>
+        <span>DeviceGuide</span>
+      </button>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <button data-route="home">Home</button>
+        <button data-route="brands">Brands</button>
+        <button data-route="coming-soon">Coming Soon</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>DeviceGuide Simulator</strong>
+        <p>Original demo app for step-by-step mobile help and training flows.</p>
+      </div>
+      <p>Built with HTML, CSS, and JavaScript only.</p>
+    </div>
+  </footer>
+
+  <script src="js/data/brands.js"></script>
+  <script src="js/data/devices/vivo.js"></script>
+  <script src="js/data/devices/xiaomi.js"></script>
+  <script src="js/data/devices/redmi.js"></script>
+  <script src="js/data/devices/poco.js"></script>
+  <script src="js/data/devices/samsung.js"></script>
+  <script src="js/data/devices/apple.js"></script>
+  <script src="js/data/devices/realme.js"></script>
+  <script src="js/data/devices/oppo.js"></script>
+  <script src="js/data/devices/motorola.js"></script>
+  <script src="js/data/devices/oneplus.js"></script>
+  <script src="js/data/devices/iqoo.js"></script>
+  <script src="js/data/tutorials/samsung.js"></script>
+  <script src="js/data/tutorials/iphone.js"></script>
+  <script src="js/data/tutorials/default.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/phone-renderer.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
