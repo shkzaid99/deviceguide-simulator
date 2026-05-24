@@ -11,9 +11,11 @@
   --cyan: #0891b2;
   --green: #16a34a;
   --amber: #d97706;
+  --rose: #e11d48;
+  --lime: #65a30d;
   --black: #05070a;
-  --shadow: 0 20px 55px rgba(7, 17, 31, 0.12);
-  --shadow-soft: 0 12px 30px rgba(7, 17, 31, 0.07);
+  --shadow: 0 24px 64px rgba(7, 17, 31, 0.15);
+  --shadow-soft: 0 12px 30px rgba(7, 17, 31, 0.08);
   --radius: 8px;
 }
 
@@ -26,9 +28,17 @@ body {
   font-family: "Inter", Arial, sans-serif;
   color: var(--text);
   background:
-    linear-gradient(180deg, #fbfdff 0, var(--bg) 340px),
+    linear-gradient(90deg, rgba(18, 100, 245, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(8, 145, 178, 0.04) 1px, transparent 1px),
+    linear-gradient(180deg, #fbfdff 0, var(--bg) 360px),
     var(--bg);
+  background-size: 44px 44px, 44px 44px, auto, auto;
   text-rendering: optimizeLegibility;
+}
+
+body::selection {
+  color: white;
+  background: var(--blue);
 }
 
 button,
@@ -67,7 +77,7 @@ input:focus-visible {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.82);
   border-bottom: 1px solid var(--line);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.78) inset;
   backdrop-filter: blur(18px);
@@ -96,6 +106,11 @@ input:focus-visible {
   gap: 10px;
   font-weight: 800;
   font-size: 1.05rem;
+  transition: transform 180ms ease;
+}
+
+.brand-mark:hover {
+  transform: translateY(-1px);
 }
 
 .brand-icon {
@@ -104,10 +119,11 @@ input:focus-visible {
   width: 38px;
   height: 38px;
   color: white;
-  background: linear-gradient(135deg, var(--black), var(--blue) 60%, var(--cyan));
+  background:
+    linear-gradient(135deg, var(--black), var(--blue) 48%, var(--cyan) 78%, var(--green));
   border-radius: var(--radius);
   font-size: 0.8rem;
-  box-shadow: 0 10px 22px rgba(18, 100, 245, 0.24);
+  box-shadow: 0 12px 26px rgba(18, 100, 245, 0.28);
 }
 
 .nav-links {
@@ -150,12 +166,35 @@ input:focus-visible {
 }
 
 .hero {
+  position: relative;
+  overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(238, 246, 255, 0.92) 58%, rgba(236, 253, 245, 0.74) 100%);
+    linear-gradient(115deg, rgba(255, 255, 255, 0.98) 0%, rgba(237, 246, 255, 0.92) 46%, rgba(236, 253, 245, 0.8) 100%),
+    repeating-linear-gradient(135deg, rgba(18, 100, 245, 0.08) 0 1px, transparent 1px 22px);
   border-bottom: 1px solid var(--line);
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 12px;
+  background: linear-gradient(90deg, var(--blue), var(--cyan), var(--green), var(--amber), var(--rose));
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, transparent 0 18%, rgba(255, 255, 255, 0.54) 18% 22%, transparent 22% 46%, rgba(255, 255, 255, 0.32) 46% 49%, transparent 49%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .hero-grid {
+  position: relative;
+  z-index: 1;
   min-height: 540px;
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
@@ -174,6 +213,12 @@ input:focus-visible {
   letter-spacing: 0;
 }
 
+.hero-copy h1 {
+  background: linear-gradient(120deg, var(--text) 0 38%, var(--blue) 58%, var(--cyan) 78%, var(--green));
+  background-clip: text;
+  color: transparent;
+}
+
 .hero-copy p,
 .page-title p,
 .empty-state p {
@@ -190,9 +235,12 @@ input:focus-visible {
   letter-spacing: 0;
   font-size: 0.78rem;
   font-weight: 800;
+  text-shadow: 0 8px 18px rgba(18, 100, 245, 0.12);
 }
 
 .search-panel {
+  position: relative;
+  overflow: hidden;
   max-width: 660px;
   margin-top: 28px;
   padding: 16px;
@@ -200,6 +248,14 @@ input:focus-visible {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+}
+
+.search-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue), var(--cyan), var(--green));
 }
 
 .search-panel label {
@@ -245,7 +301,7 @@ input:focus-visible {
   border-radius: var(--radius);
   padding: 0 18px;
   color: white;
-  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark) 58%, var(--cyan));
   font-weight: 800;
   box-shadow: 0 12px 24px rgba(18, 100, 245, 0.2);
   transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
@@ -254,8 +310,8 @@ input:focus-visible {
 .search-row button:hover,
 .primary-button:hover,
 .step-actions button:not(:disabled):hover {
-  transform: translateY(-1px);
-  box-shadow: 0 16px 30px rgba(18, 100, 245, 0.26);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(18, 100, 245, 0.3);
 }
 
 .section {
@@ -276,6 +332,18 @@ input:focus-visible {
 .step-panel h2 {
   margin: 0;
   font-size: 1.65rem;
+}
+
+.section-heading h2::after,
+.tutorial-list h2::after,
+.step-panel h2::after {
+  content: "";
+  display: block;
+  width: 58px;
+  height: 4px;
+  margin-top: 10px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--blue), var(--cyan), var(--green));
 }
 
 .link-button,
@@ -316,6 +384,7 @@ input:focus-visible {
   color: var(--text);
   text-align: left;
   box-shadow: var(--shadow-soft);
+  isolation: isolate;
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 
@@ -325,12 +394,46 @@ input:focus-visible {
   position: absolute;
   inset: 0 0 auto;
   height: 4px;
-  background: var(--accent, linear-gradient(90deg, var(--blue), var(--cyan)));
-  opacity: 0.85;
+  background: linear-gradient(90deg, var(--accent, var(--blue)), var(--cyan), var(--green));
+  opacity: 0.9;
+}
+
+.brand-card::after,
+.device-card::after,
+.topic-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 16px 14px auto;
+  width: 54px;
+  height: 10px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, rgba(18, 100, 245, 0.18), rgba(8, 145, 178, 0.08));
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: -1;
 }
 
 .brand-card {
   padding: 22px;
+}
+
+.brand-card:nth-child(3n + 1) {
+  background:
+    linear-gradient(135deg, rgba(18, 100, 245, 0.05), rgba(255, 255, 255, 0.94)),
+    var(--surface);
+}
+
+.brand-card:nth-child(3n + 2) {
+  background:
+    linear-gradient(135deg, rgba(8, 145, 178, 0.055), rgba(255, 255, 255, 0.94)),
+    var(--surface);
+}
+
+.brand-card:nth-child(3n + 3) {
+  background:
+    linear-gradient(135deg, rgba(101, 163, 13, 0.055), rgba(255, 255, 255, 0.94)),
+    var(--surface);
 }
 
 .device-card {
@@ -342,12 +445,19 @@ input:focus-visible {
 
 .brand-card:hover,
 .device-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px);
   border-color: rgba(18, 100, 245, 0.42);
-  box-shadow: 0 20px 48px rgba(18, 100, 245, 0.16);
+  box-shadow: 0 24px 54px rgba(18, 100, 245, 0.18);
   background:
-    linear-gradient(135deg, rgba(18, 100, 245, 0.11), rgba(8, 145, 178, 0.05)),
+    linear-gradient(135deg, rgba(18, 100, 245, 0.13), rgba(8, 145, 178, 0.06) 52%, rgba(101, 163, 13, 0.05)),
     var(--surface);
+}
+
+.brand-card:hover::after,
+.device-card:hover::after,
+.topic-card:hover::after {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .card-icon {
@@ -361,6 +471,12 @@ input:focus-visible {
   background: var(--accent, var(--blue));
   font-weight: 800;
   box-shadow: 0 14px 26px rgba(7, 17, 31, 0.14);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.brand-card:hover .card-icon {
+  transform: rotate(-3deg) scale(1.06);
+  box-shadow: 0 18px 34px rgba(7, 17, 31, 0.18);
 }
 
 .brand-card strong,
@@ -431,6 +547,7 @@ input:focus-visible {
 }
 
 .guide-hero {
+  position: relative;
   min-height: 270px;
   display: grid;
   grid-template-columns: 1fr 260px;
@@ -442,9 +559,18 @@ input:focus-visible {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.99), rgba(255, 255, 255, 0.82)),
+    linear-gradient(95deg, rgba(255, 255, 255, 0.99), rgba(255, 255, 255, 0.84)),
+    linear-gradient(135deg, rgba(18, 100, 245, 0.11), transparent 42%),
     repeating-linear-gradient(135deg, #e8eef6 0 1px, transparent 1px 42px);
   box-shadow: var(--shadow-soft);
+}
+
+.guide-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: linear-gradient(90deg, var(--blue), var(--cyan), var(--green), var(--amber));
 }
 
 .guide-hero h1 {
@@ -464,6 +590,7 @@ input:focus-visible {
   place-items: center;
   transform: scale(0.62);
   transform-origin: center;
+  animation: float-phone-small 5s ease-in-out infinite;
 }
 
 .topic-section {
@@ -483,7 +610,9 @@ input:focus-visible {
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--surface);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95)),
+    var(--surface);
   text-align: left;
   box-shadow: var(--shadow-soft);
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
@@ -496,11 +625,11 @@ input:focus-visible {
 
 .topic-card:hover,
 .topic-card.is-active {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
   border-color: rgba(18, 100, 245, 0.5);
   box-shadow: 0 18px 42px rgba(18, 100, 245, 0.14);
   background:
-    linear-gradient(135deg, rgba(18, 100, 245, 0.1), rgba(255, 255, 255, 0.86)),
+    linear-gradient(135deg, rgba(18, 100, 245, 0.12), rgba(8, 145, 178, 0.06), rgba(255, 255, 255, 0.86)),
     var(--surface);
 }
 
@@ -509,7 +638,7 @@ input:focus-visible {
   margin-bottom: 16px;
   padding: 6px 10px;
   color: white;
-  background: var(--black);
+  background: linear-gradient(135deg, var(--black), var(--blue));
   border-radius: 999px;
   font-size: 0.72rem;
   font-weight: 800;
@@ -607,6 +736,9 @@ input:focus-visible {
   place-items: center;
   min-height: 600px;
   padding: 26px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(239, 246, 255, 0.86)),
+    repeating-linear-gradient(90deg, rgba(18, 100, 245, 0.06) 0 1px, transparent 1px 34px);
 }
 
 .guide-phone-stage {
@@ -618,13 +750,28 @@ input:focus-visible {
 
 .phone-mockup {
   position: relative;
+  isolation: isolate;
   width: min(265px, 86vw);
   aspect-ratio: 9 / 18;
   padding: 12px;
   border: 12px solid #05070a;
   border-radius: 34px;
   background: #07111f;
-  box-shadow: 0 28px 70px rgba(2, 6, 23, 0.28);
+  box-shadow:
+    0 28px 70px rgba(2, 6, 23, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+  animation: float-phone 6s ease-in-out infinite;
+}
+
+.phone-mockup::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(18, 100, 245, 0.24), rgba(8, 145, 178, 0.1), rgba(101, 163, 13, 0.12));
+  filter: blur(18px);
+  opacity: 0.58;
+  z-index: -1;
 }
 
 .frame-iphone-modern {
@@ -1360,6 +1507,28 @@ input:focus-visible {
   }
 }
 
+@keyframes float-phone {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(0.6deg);
+  }
+}
+
+@keyframes float-phone-small {
+  0%,
+  100% {
+    transform: scale(0.62) translateY(0);
+  }
+
+  50% {
+    transform: scale(0.62) translateY(-10px);
+  }
+}
+
 .ios-home-grid {
   margin-top: 26px;
 }
@@ -1648,5 +1817,16 @@ input:focus-visible {
   .brand-card,
   .device-card {
     min-height: 132px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
