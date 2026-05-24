@@ -15,6 +15,7 @@ let state = {
 const byId = (items, id) => items.find((item) => item.id === id);
 const getBrand = (brandId) => byId(appData.brands, brandId);
 const getDevices = (brandId) => appData.devices[brandId] || [];
+const getVisibleDevices = (brandId) => getDevices(brandId).slice(0, 8);
 const getDevice = (deviceId) => Object.entries(appData.devices)
   .flatMap(([brandId, devices]) => devices.map((device) => ({ ...device, brandId })))
   .find((device) => device.id === deviceId);
@@ -65,10 +66,6 @@ function heroSearchMarkup() {
 
 function renderHome() {
   const supportedBrands = appData.brands.filter((brand) => brand.supported);
-  const popularDevices = Object.entries(appData.devices)
-    .flatMap(([brandId, devices]) => devices.map((device) => ({ ...device, brandId, brand: getBrand(brandId).name })))
-    .filter((device) => device.popular)
-    .slice(0, 8);
 
   return `
     <section class="hero">
@@ -97,27 +94,15 @@ function renderHome() {
         ${supportedBrands.slice(0, 8).map(brandCard).join("")}
       </div>
     </section>
-
-    <section class="section container">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Fast access</p>
-          <h2>Popular devices</h2>
-        </div>
-      </div>
-      <div class="card-grid device-grid">
-        ${popularDevices.map(deviceCard).join("")}
-      </div>
-    </section>
   `;
 }
 
 function renderBrands() {
   return `
     <section class="page-title container">
-      <p class="eyebrow">Brand directory</p>
+      <p class="eyebrow">Brands</p>
       <h1>Select a mobile brand</h1>
-      <p>Supported brands open a model list. Unsupported brands show a clean coming soon state.</p>
+      <p>Choose a brand that you own and select the settings for further guidance.</p>
     </section>
     <section class="section container">
       <div class="card-grid brand-grid">
@@ -131,7 +116,7 @@ function renderDevices() {
   const brand = getBrand(state.brandId);
   if (!brand || !brand.supported) return renderComingSoon();
 
-  const devices = getDevices(brand.id);
+  const devices = getVisibleDevices(brand.id);
   return `
     <section class="page-title container">
       <button class="back-button" data-route="brands">Back to brands</button>
@@ -404,7 +389,7 @@ function handleSearch(event) {
 function handleDeviceFilter(event) {
   const query = event.target.value.toLowerCase();
   const brand = getBrand(state.brandId);
-  const filtered = getDevices(state.brandId).filter((device) =>
+  const filtered = getVisibleDevices(state.brandId).filter((device) =>
     `${device.name} ${device.series}`.toLowerCase().includes(query)
   );
   const results = document.querySelector("#deviceResults");

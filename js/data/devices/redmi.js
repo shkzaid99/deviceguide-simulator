@@ -2,27 +2,27 @@
 window.deviceGuideDevices = window.deviceGuideDevices || {};
 window.deviceGuideDevices.redmi = [
   {
+    "id": "redmi-note-13",
+    "name": "Redmi Note 13",
+    "series": "Note Series",
+    "popular": true
+  },
+  {
     "id": "redmi-note-13-pro",
     "name": "Redmi Note 13 Pro",
     "series": "Note Series",
     "popular": true
   },
   {
-    "id": "redmi-note-13-pro-plus",
-    "name": "Redmi Note 13 Pro+",
-    "series": "Note Series",
+    "id": "redmi-12-5g",
+    "name": "Redmi 12 5G",
+    "series": "Number Series",
     "popular": true
   },
   {
-    "id": "redmi-note-13",
-    "name": "Redmi Note 13",
-    "series": "Note Series",
-    "popular": false
-  },
-  {
-    "id": "redmi-note-12-pro",
-    "name": "Redmi Note 12 Pro",
-    "series": "Note Series",
+    "id": "redmi-13c",
+    "name": "Redmi 13C",
+    "series": "C Series",
     "popular": false
   },
   {
@@ -32,39 +32,9 @@ window.deviceGuideDevices.redmi = [
     "popular": false
   },
   {
-    "id": "redmi-note-11-pro",
-    "name": "Redmi Note 11 Pro",
+    "id": "redmi-note-12-pro",
+    "name": "Redmi Note 12 Pro",
     "series": "Note Series",
-    "popular": false
-  },
-  {
-    "id": "redmi-note-11",
-    "name": "Redmi Note 11",
-    "series": "Note Series",
-    "popular": false
-  },
-  {
-    "id": "redmi-note-10-pro",
-    "name": "Redmi Note 10 Pro",
-    "series": "Note Series",
-    "popular": false
-  },
-  {
-    "id": "redmi-note-10",
-    "name": "Redmi Note 10",
-    "series": "Note Series",
-    "popular": false
-  },
-  {
-    "id": "redmi-13c",
-    "name": "Redmi 13C",
-    "series": "C Series",
-    "popular": false
-  },
-  {
-    "id": "redmi-12-5g",
-    "name": "Redmi 12 5G",
-    "series": "Number Series",
     "popular": false
   },
   {
@@ -76,12 +46,6 @@ window.deviceGuideDevices.redmi = [
   {
     "id": "redmi-10-prime",
     "name": "Redmi 10 Prime",
-    "series": "Number Series",
-    "popular": false
-  },
-  {
-    "id": "redmi-9-prime",
-    "name": "Redmi 9 Prime",
     "series": "Number Series",
     "popular": false
   }

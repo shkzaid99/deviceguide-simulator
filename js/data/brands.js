@@ -65,17 +65,5 @@ window.deviceGuideBrands = [
     "name": "iQOO",
     "supported": true,
     "accent": "#1f2937"
-  },
-  {
-    "id": "nothing",
-    "name": "Nothing",
-    "supported": false,
-    "accent": "#475569"
-  },
-  {
-    "id": "honor",
-    "name": "Honor",
-    "supported": false,
-    "accent": "#475569"
   }
 ];
